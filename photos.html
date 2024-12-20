@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ffc0cb, #f5e0d9);
+            font-family: Arial, sans-serif;
+        }
+        .photo-viewer {
+            position: relative;
+            width: 30%;
+            height: 60%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .photo-viewer img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: #5a3931;
+            cursor: pointer;
+            user-select: none;
+        }
+        .arrow.left {
+            left: -50px;
+        }
+        .arrow.right {
+            right: -50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="photo-viewer">
+        <span class="arrow left">&#9664;</span>
+        <img src="photo1.jpg" alt="Photo">
+        <span class="arrow right">&#9654;</span>
+    </div>
+    <script>
+        const photos = ["photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg", "photo6.jpg", "photo7.jpg", "photo8.jpg", "photo9.jpg", "photo10.jpg"];
+        let currentIndex = 0;
+
+        const imgElement = document.querySelector(".photo-viewer img");
+        const leftArrow = document.querySelector(".arrow.left");
+        const rightArrow = document.querySelector(".arrow.right");
+
+        leftArrow.addEventListener("click", () => {
+            currentIndex = (currentIndex === 0) ? photos.length - 1 : currentIndex - 1;
+            imgElement.src = photos[currentIndex];
+        });
+
+        rightArrow.addEventListener("click", () => {
+            currentIndex = (currentIndex === photos.length - 1) ? 0 : currentIndex + 1;
+            imgElement.src = photos[currentIndex];
+        });
+    </script>
+</body>
+</html>
